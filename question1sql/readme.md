@@ -81,7 +81,7 @@ SELECT
   room_type,
   sum(booking_amount) AS total_bookings,
   avg(booking_amount) AS average_bookings,
-  dense_rank() OVER (PARTITION BY date_format(date, 'YYYY-MM') ORDER BY sum(booking_amount) DESC) AS rank
+  rank() OVER (PARTITION BY date_format(date, 'YYYY-MM') ORDER BY sum(booking_amount) DESC) AS rank
 FROM
   bookings 
 GROUP BY
